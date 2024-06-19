@@ -17,3 +17,7 @@ CREATE TABLE sentence (
   topic_id INT,
   FOREIGN KEY(topic_id) REFERENCES topic(id)
 );
+
+INSERT INTO topic (id, title) VALUES (1, "Artificial Intelligence");
+
+INSERT INTO sentene (id, sentence, topic_id) VALUES(1, "Artificial intelligence (AI) is an information technology that functions like the human brain." ,1);

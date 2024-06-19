@@ -20,4 +20,4 @@ CREATE TABLE sentence (
 
 INSERT INTO topic (id, title) VALUES (1, "Artificial Intelligence");
 
-INSERT INTO sentene (id, sentence, topic_id) VALUES(1, "Artificial intelligence (AI) is an information technology that functions like the human brain." ,1);
+INSERT INTO sentence (id, sentence, topic_id) VALUES(1, "Artificial intelligence (AI) is an information technology that functions like the human brain." ,1);

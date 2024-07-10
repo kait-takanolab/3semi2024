@@ -3,6 +3,19 @@ import mysql.connector
 
 app = Flask(__name__)
 
+# DB処理
+try:
+    # ログイン
+    cnx = mysql.connector.connect(user='root', password='',
+                            host='127.0.0.1',
+                            database='3semi2024')
+    cur = cnx.cursor()
+    print("MySQLに接続しました。")
+
+except mysql.connector.Error as err:
+    print("Error: {}".format(err))
+    exit()
+
 @app.route('/', methods=['GET', 'POST'])
 def top():
     return "Hello World!"
@@ -45,9 +58,18 @@ def hellodb():
 def practice():
     # 取得するデータの決定 (IDを指定: トピックID、英文ID)
     # DBからデータ(英文とパス)を取得
+
+    sql = "SELECT sentence, audio_path FROM sentence WHERE topic_id = 1 and id = 1;"
+        # SQLの実行
+    cur.execute(sql)
+    for db_sententce, db_path in cur:
+        print(db_sententce, db_path)
+            
     # テンプレートに、英文とパスを渡す
-    sentence = "Wagahai ha neko."
-    path = "audio/1_1.mp3"
+    #sentence = "Wagahai ha neko."
+    #path = "audio/1_1.mp3"
+    sentence = db_sententce
+    path = db_path
     return render_template("practice.html", sentence=sentence, path=path)
 
 

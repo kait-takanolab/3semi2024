@@ -39,5 +39,17 @@ def hellodb():
     
     return render_template("hello.html", name=myname)
 
+# URLの指定
+@app.route('/practice', methods=['GET', 'POST'])
+# 処理の実行
+def practice():
+    # 取得するデータの決定 (IDを指定: トピックID、英文ID)
+    # DBからデータ(英文とパス)を取得
+    # テンプレートに、英文とパスを渡す
+    sentence = "Wagahai ha neko."
+    path = "audio/1_1.mp3"
+    return render_template("practice.html", sentence=sentence, path=path)
+
+
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8080, debug=True)

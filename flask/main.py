@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import mysql.connector
 
 app = Flask(__name__)
@@ -59,8 +59,11 @@ def practice():
     # 取得するデータの決定 (IDを指定: トピックID、英文ID)
     # DBからデータ(英文とパス)を取得
 
-    sql = "SELECT sentence, audio_path FROM sentence WHERE topic_id = 1 and id = 1;"
-        # SQLの実行
+    topic_id = request.args.get("topic_id", 1)
+    sentence_id = request.args.get("sentence_id", 1)
+    print("topic_id", topic_id)
+    sql = "SELECT sentence, audio_path FROM sentence WHERE topic_id = " + topic_id + " and id = " + sentence_id + " ;"
+    # SQLの実行
     cur.execute(sql)
     for db_sententce, db_path in cur:
         print(db_sententce, db_path)
